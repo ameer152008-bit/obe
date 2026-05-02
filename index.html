@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم زينب (أوبي) 🩵💜</title>
+    <style>
+        /* إعدادات الخطوط والأساسيات */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* لمنع شريط التمرير الخارجي */
+            font-family: 'Tajawal', sans-serif; /* خط عربي أنيق */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- نظام الخلفية المتغيرة (Slideshow) --- */
+        .background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* لجعلها خلف المحتوى */
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0; /* البداية شفافة */
+            transition: opacity 1.5s ease-in-out; /* حركة ناعمة للتغير */
+        }
+
+        /* تحديد صور الشخصيات في الخلفية */
+        /* ملاحظة: استخدمت صوراً تعبيرية، يمكنك استبدال الروابط لاحقاً */
+        .slide1 { 
+            background-image: url('https://ibb.co/8nNg9nZW'); 
+            background-color: #f8f9fa; /* لون احتياطي */
+        }
+        .slide2 { 
+            background-image: url('https://ibb.co/VfbcqTg'); 
+            background-color: #e0f7fa;
+        }
+        .slide3 { 
+            background-image: url('https://ibb.co/7tkWn0D3'); 
+            background-color: #ede7f6;
+        }
+
+        /* الكلاس النشط الذي يظهر الصورة */
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* --- تصميم البطاقة الشخصية المطور --- */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شفافة */
+            backdrop-filter: blur(10px); /* تأثير ضبابي خلف البطاقة */
+            padding: 40px;
+            border-radius: 30px; /* زوايا دائرية جداً مثل السحابة */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* ظل عميق */
+            border: 5px solid #87CEEB; /* إطار أزرق سمائي أساسي */
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        /* إضافة لمسة أرجوانية للإطار */
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border-radius: 35px;
+            border: 5px solid #9370DB; /* إطار أرجواني فوق الأزرق */
+            z-index: -1;
+            opacity: 0.5; /* شفاف قليلاً */
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px); /* ترتفع قليلاً عند تمرير الفأرة */
+        }
+
+        /* تصميم العناوين والفقرات */
+        h1 {
+            color: #4682B4; /* أزرق فولاذي */
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .nickname {
+            color: #9370DB; /* أرجواني */
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* تصميم صناديق المعلومات المطور */
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* مسافة بين الصناديق */
+        }
+
+        .info-box {
+            background: rgba(240, 248, 255, 0.9); /* أزرق خفيف جداً */
+            padding: 15px 20px;
+            border-radius: 15px;
+            border-right: 6px solid #87CEEB; /* حافة يمنى زرقاء */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .info-box:hover {
+            background: #fff;
+            border-right-color: #9370DB; /* تتحول للأرجواني عند الوقف عليها */
+            transform: scale(1.02); /* تكبر قليلاً */
+        }
+
+        .info-icon {
+            font-size: 1.5em;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            margin-left: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* تمييز العمر */
+        #age.age-highlight {
+            font-size: 1.4em;
+            color: #9370DB;
+            background: #eee0ff;
+            padding: 2px 8px;
+            border-radius: 8px;
+        }
+
+        /* تذيل الصفحة */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .heart-icon {
+            color: #9370DB;
+            animation: heartBeat 1.5s infinite; /* قلب ينبض */
+            display: inline-block;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="background-slideshow">
+        <div class="slide slide1 active"></div> <div class="slide slide2"></div>        <div class="slide slide3"></div>        </div>
+
+    <div class="profile-card">
+        <h1>زينب 🩵</h1>
+        <p class="nickname">(أوبي الجبس 💜)</p>
+
+        <div class="info-container">
+            <div class="info-box">
+                <span class="info-icon">📅</span>
+                <span class="info-label">تاريخ الميلاد:</span>
+                <span class="info-value">8 مارس 2011</span>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">🎂</span>
+                <span class="info-label">العمر الحالي:</span>
+                <span class="info-value"><span id="age" class="age-highlight">--</span> سنة</span>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">🦊</span>
+                <span class="info-label">الحيوان المفضل:</span>
+                <span class="info-value">الثعلب</span>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">🎨</span>
+                <span class="info-label">الألوان المفضلة:</span>
+                <span class="info-value">
+                    <span style="color: #4682B4;">السمائي</span> & 
+                    <span style="color: #9370DB;">الأرجواني</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="footer">
+            صنع بكل حب <span class="heart-icon">💜</span> في عالم زينب
+        </div>
+    </div>
+
+    <script>
+        // --- 1. كود حساب العمر تلقائياً (كما سابقاً) ---
+        function calculateAge(birthDate) {
+            const today = new Date();
+            const birth = new Date(birthDate);
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            return age;
+        }
+        // تحديث العمر (8 مارس 2011)
+        document.getElementById('age').innerText = calculateAge('2011-03-08');
+
+
+        // --- 2. كود السلايدشو للخلفية (تغيير الصور) ---
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 5000; // الوقت بالملي ثانية (5 ثوانٍ)
+
+        function nextSlide() {
+            // إزالة الكلاس النشط من الصورة الحالية
+            slides[currentSlide].classList.remove('active');
+            
+            // الانتقال للصورة التالية (والعودة للبداية إذا انتهت الصور)
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // إضافة الكلاس النشط للصورة الجديدة
+            slides[currentSlide].classList.add('active');
+        }
+
+        // تشغيل التغيير التلقائي
+        setInterval(nextSlide, slideInterval);
+    </script>
+
+</body>
+</html>
