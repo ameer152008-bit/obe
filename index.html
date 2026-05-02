@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 𔒌 زينــب౨ৎ꒱ ꒱| أوبي، چبس 🩵💜</title>
+    <title>𔒌 زينــب౨ৎ꒱ ꒱ | أوبي، چبس 🩵💜</title>
     <style>
         /* إعدادات الخطوط والأساسيات */
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Amiri&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+        /* إضافة خط Amiri المزخرف للاسم */
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
         body, html {
             margin: 0;
@@ -89,7 +92,7 @@
         #iraq-time { color: #4682B4; font-weight: bold; }
         #visitor-count { color: #9370DB; font-weight: bold; }
 
-        /* --- تصميم الصورة الشخصية (Avatar) - (تم التعديل لاستخدام الملف المحلي) --- */
+        /* --- تصميم الصورة الشخصية (Avatar) - (يستخدم الملف المحلي avatar.jpg) --- */
         .avatar-container {
             width: 130px;
             height: 130px;
@@ -103,8 +106,7 @@
             background-position: center;
             background-repeat: no-repeat;
             
-            /* --- هـنا نقوم بربط الصورة المحلية التي رفعتِها باسم avatar.jpg --- */
-            /* إذا كانت صورتك بصيغة png، غيري الامتداد إلى avatar.png */
+            /* --- هـنا نقوم بربط الصورة المحلية باسم avatar.jpg --- */
             background-image: url('avatar.jpg'); 
         }
 
@@ -112,9 +114,11 @@
         h1 {
             font-family: 'Amiri', serif; /* خط مزخرف قليلاً للاسم */
             color: #4682B4;
-            font-size: 3.2em;
+            font-size: 2.8em; /* تقليل الحجم قليلاً ليتناسب مع الزخرفة الطويلة */
             margin: 0;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            direction: ltr; /* لجعل الزخرفة تظهر بشكل صحيح */
+            display: inline-block;
         }
 
         .nickname {
@@ -123,6 +127,7 @@
             font-weight: bold;
             margin-bottom: 30px;
             opacity: 0.8;
+            margin-top: 10px;
         }
 
         /* --- تنظيم محتوى الأقسام (صناديق شفافة) --- */
@@ -220,7 +225,7 @@
         /* لتجربة الهاتف (Responsive) */
         @media (max-width: 600px) {
             .header-stats { flex-direction: column; gap: 3px; align-items: center; font-size: 0.8em; }
-            h1 { font-size: 2.5em; }
+            h1 { font-size: 2em; } /* تقليل حجم الاسم أكثر على الهاتف */
             .profile-card { padding: 20px; }
             .avatar-container { width: 100px; height: 100px; }
         }
@@ -241,9 +246,10 @@
             </div>
 
             <div class="avatar-container">
-                </div>
+            </div>
 
-            <h1>✧ زِيـنَـب ✧</h1>
+            <h1>𔒌 زينــب౨ৎ꒱ ꒱</h1>
+            
             <p class="nickname">(أوبي، چبس 💜)</p>
 
             <div class="sections-container">
@@ -295,7 +301,7 @@
     </div>
 
     <script>
-        // --- 1. كود حساب العمر تلقائياً (كما سابقاً) ---
+        // --- 1. كود حساب العمر تلقائياً ---
         function calculateAge(birthDate) {
             const today = new Date();
             const birth = new Date(birthDate);
@@ -306,7 +312,7 @@
         }
         document.getElementById('age').innerText = calculateAge('2011-03-08');
 
-        // --- 2. كود السلايدشو للخلفية (تغيير الصور) ---
+        // --- 2. كود السلايدشو للخلفية ---
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {
@@ -315,7 +321,7 @@
             slides[currentSlide].classList.add('active');
         }, 5000); // 5 ثوانٍ
 
-        // --- 3. كود توقيت وتاريخ العراق المباشر (GMT+3) ---
+        // --- 3. كود توقيت وتاريخ العراق المباشر ---
         function updateIraqTime() {
             const now = new Date();
             const options = { timeZone: 'Asia/Baghdad', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -324,10 +330,10 @@
             document.getElementById('iraq-date').innerText = datePart;
             document.getElementById('iraq-time').innerText = timePart;
         }
-        setInterval(updateIraqTime, 1000); // تحديث كل ثانية
-        updateIraqTime(); // تشغيل فوري
+        setInterval(updateIraqTime, 1000);
+        updateIraqTime();
 
-        // --- 4. كود عداد الزوار (تخزين محلي مجازي) ---
+        // --- 4. كود عداد الزوار ---
         function updateVisitorCount() {
             let count = localStorage.getItem('zainab_site_visits');
             if (!count) { count = 1; } 
@@ -335,10 +341,9 @@
             localStorage.setItem('zainab_site_visits', count);
             document.getElementById('visitor-count').innerText = count;
         }
-        updateVisitorCount(); // تشغيل عند تحميل الصفحة
+        updateVisitorCount();
 
     </script>
 
 </body>
 </html>
-
