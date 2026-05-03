@@ -15,7 +15,7 @@
             color: #333; overflow: hidden;
         }
 
-        /* --- نظام الخلفية (تم الضبط لملء الشاشة تماماً) --- */
+        /* نظام الخلفية لملء الشاشة تماماً */
         .background-slideshow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
         }
@@ -23,7 +23,7 @@
             position: absolute; width: 100%; height: 100%;
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 100% 100%; /* تملأ الطول والعرض تماماً */
+            background-size: 100% 100%;
             opacity: 0; transition: opacity 1.5s ease-in-out;
         }
         .slide.active { opacity: 1; }
@@ -31,40 +31,53 @@
         .slide2 { background-image: url('miku.jpg'); }
         .slide3 { background-image: url('pocoyo.jpg'); }
 
-        /* --- البطاقة الشفافة --- */
+        /* البطاقة التعريفية */
         .profile-container {
-            width: 90%; max-width: 420px; z-index: 10;
+            width: 92%; max-width: 400px; z-index: 10;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 25px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px 15px;
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .avatar-container {
-            width: 100px; height: 100px; border-radius: 50%;
-            margin: 0 auto 15px; border: 3px solid #fff;
+            width: 90px; height: 90px; border-radius: 50%;
+            margin: 0 auto 10px; border: 3px solid #fff;
             background-image: url('avatar.jpg');
             background-size: cover; background-position: center;
         }
 
         h1 {
             font-family: 'Amiri', serif;
-            color: #4682B4; font-size: 2.3rem; margin: 0;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            color: #4682B4; font-size: 2.2rem; margin: 0;
         }
 
         .nickname {
-            color: #9370DB; font-size: 1.1em; font-weight: bold; margin-bottom: 20px;
+            color: #9370DB; font-size: 1.1em; font-weight: bold; margin: 2px 0 10px 0;
         }
 
-        /* --- الأزرار (أزرق سمائي شفاف وخط بنفسجي) --- */
+        /* توقيت العراق والزوار تحت الاسم */
+        .live-stats {
+            font-size: 0.85em;
+            color: #555;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .live-stats div { margin: 3px 0; }
+        #iraq-time { color: #4682B4; font-weight: bold; }
+        #visitor-count { color: #9370DB; font-weight: bold; }
+
+        /* الأزرار التفاعلية */
         .menu-buttons {
             display: flex; flex-direction: column; gap: 10px;
         }
@@ -73,9 +86,9 @@
             background: rgba(135, 206, 235, 0.4); 
             color: #9370DB; 
             border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 14px;
+            padding: 12px;
             border-radius: 15px;
-            font-size: 1em;
+            font-size: 0.95em;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -87,31 +100,40 @@
             border: 1px solid #9370DB;
         }
 
-        /* --- محتوى المعلومات --- */
+        /* محتوى الأزرار */
         .tab-content {
             display: none;
-            background: rgba(255, 255, 255, 0.5);
-            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
             padding: 15px;
             border-radius: 15px;
             text-align: right;
-            animation: slideDown 0.4s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         .tab-content.active { display: block; }
 
         .info-item {
-            display: flex; justify-content: space-between;
-            margin-bottom: 8px; border-bottom: 1px solid rgba(147, 112, 219, 0.1);
-            padding-bottom: 4px; font-size: 0.9em;
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+            padding-bottom: 4px;
+            font-size: 0.88em;
+            /* منع النص من الانقسام لسطرين */
+            white-space: nowrap; 
         }
 
-        @keyframes slideDown {
+        .item-label { color: #666; font-weight: bold; }
+        .item-value { color: #222; margin-right: 10px; }
+
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .footer { margin-top: 20px; font-size: 0.75em; color: rgba(0,0,0,0.5); }
+        .footer { margin-top: 20px; font-size: 0.7em; color: rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -128,26 +150,31 @@
             <h1>𔒌 زينــب౨ৎ</h1>
             <p class="nickname">(أوبي، چبس 💜)</p>
 
+            <div class="live-stats">
+                <div>🕒 العراق: <span id="iraq-time">--:--:--</span></div>
+                <div>👁️ الزوار: <span id="visitor-count">1</span></div>
+            </div>
+
             <div class="menu-buttons">
                 <button class="tab-btn" onclick="openTab(event, 'basic')">المعلومات الأساسية</button>
                 <div id="basic" class="tab-content">
-                    <div class="info-item"><span>📅 المواليد:</span> <span>2011/8/3</span></div>
-                    <div class="info-item"><span>🎂 العمر:</span> <span id="age">--</span> سنة</div>
-                    <div class="info-item"><span>🦊 الحيوان المفضل:</span> <span>الثعلب</span></div>
-                    <div class="info-item"><span>🎨 اللون المفضل:</span> <span style="color:#9370DB"> الازرق و الأرجواني</span></div>
+                    <div class="info-item"><span class="item-label">📅 المواليد:</span> <span class="item-value">2011/8/3</span></div>
+                    <div class="info-item"><span class="item-label">🎂 العمر الحالي:</span> <span class="item-value">15 سنة</span></div>
+                    <div class="info-item"><span class="item-label">🦊 الحيوان المفضل:</span> <span class="item-value">الثعلب</span></div>
+                    <div class="info-item"><span class="item-label">🎨 اللون المفضل:</span> <span class="item-value" style="color:#4682B4; font-weight: bold;">الأزرق السمائي</span></div>
                 </div>
 
                 <button class="tab-btn" onclick="openTab(event, 'bio')">السيرة الذاتية والأهداف</button>
                 <div id="bio" class="tab-content">
-                    <div class="info-item"><span>🎓 المرحلة:</span> <span>ثالث متوسط</span></div>
-                    <div class="info-item"><span>🌐 اللغات:</span> <span>عربي، انكليزي، فرنسي (جارِ التعلم)</span></div>
-                    <div class="info-item"><span>🏗️ الأهداف:</span> <span>مهندسة</span></div>
+                    <div class="info-item"><span class="item-label">🎓 المرحلة:</span> <span class="item-value">ثالث متوسط</span></div>
+                    <div class="info-item"><span class="item-label">🌐 اللغات:</span> <span class="item-value">عربي، انكليزي، فرنسي..</span></div>
+                    <div class="info-item"><span class="item-label">🏗️ الهدف:</span> <span class="item-value">مهندسة 🏗️</span></div>
                 </div>
 
                 <button class="tab-btn" onclick="openTab(event, 'hobbies')">الهوايات والألعاب</button>
                 <div id="hobbies" class="tab-content">
-                    <div class="info-item"><span>🕹️ الهوايات:</span> <span>ايديت، رسم (معتزلة)</span></div>
-                    <div class="info-item"><span>🪐 الألعاب:</span> <span>Genshin Impact</span></div>
+                    <div class="info-item"><span class="item-label">🕹️ الهوايات:</span> <span class="item-value">Edit، رسم (معتزلة)</span></div>
+                    <div class="info-item"><span class="item-label">🪐 الألعاب المفضلة:</span> <span class="item-value">Genshin Impact</span></div>
                 </div>
             </div>
 
@@ -156,35 +183,38 @@
     </div>
 
     <script>
-        // تبديل الأقسام
+        // دالة تبديل الأقسام
         function openTab(evt, tabName) {
             const contents = document.getElementsByClassName("tab-content");
             const buttons = document.getElementsByClassName("tab-btn");
             const targetContent = document.getElementById(tabName);
             const isAlreadyActive = targetContent.classList.contains("active");
 
-            // إغلاق الكل أولاً
             for (let i = 0; i < contents.length; i++) {
                 contents[i].classList.remove("active");
                 buttons[i].classList.remove("active");
             }
 
-            // إذا لم يكن مفتوحاً، افتحه
             if (!isAlreadyActive) {
                 targetContent.classList.add("active");
                 evt.currentTarget.classList.add("active");
             }
         }
 
-        // حساب العمر تلقائياً
-        function calculateAge(birthDate) {
-            const today = new Date();
-            const birth = new Date(birthDate);
-            let age = today.getFullYear() - birth.getFullYear();
-            if (today.getMonth() < birth.getMonth() || (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())) age--;
-            return age;
+        // توقيت العراق
+        function updateIraqTime() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Baghdad', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            document.getElementById('iraq-time').innerText = now.toLocaleTimeString('en-GB', options);
         }
-        document.getElementById('age').innerText = calculateAge('2011-08-03');
+        setInterval(updateIraqTime, 1000);
+        updateIraqTime();
+
+        // عداد الزوار
+        let count = localStorage.getItem('zainab_site_visits') || 0;
+        count++;
+        localStorage.setItem('zainab_site_visits', count);
+        document.getElementById('visitor-count').innerText = count;
 
         // السلايدشو
         const slides = document.querySelectorAll('.slide');
