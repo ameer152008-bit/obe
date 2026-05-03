@@ -63,7 +63,7 @@
             color: #9370DB; font-size: 1.1em; font-weight: bold; margin: 2px 0 10px 0;
         }
 
-        /* توقيت العراق والزوار تحت الاسم */
+        /* توقيت العراق والزوار */
         .live-stats {
             font-size: 0.85em;
             color: #555;
@@ -121,7 +121,6 @@
             border-bottom: 1px solid rgba(135, 206, 235, 0.2);
             padding-bottom: 4px;
             font-size: 0.88em;
-            /* منع النص من الانقسام لسطرين */
             white-space: nowrap; 
         }
 
@@ -151,7 +150,7 @@
             <p class="nickname">(أوبي، چبس 💜)</p>
 
             <div class="live-stats">
-                <div>🕒 العراق: <span id="iraq-time">--:--:--</span></div>
+                <div>🕒 العراق: <span id="iraq-time">--:-- --</span></div>
                 <div>👁️ الزوار: <span id="visitor-count">1</span></div>
             </div>
 
@@ -161,7 +160,11 @@
                     <div class="info-item"><span class="item-label">📅 المواليد:</span> <span class="item-value">2011/8/3</span></div>
                     <div class="info-item"><span class="item-label">🎂 العمر الحالي:</span> <span class="item-value">15 سنة</span></div>
                     <div class="info-item"><span class="item-label">🦊 الحيوان المفضل:</span> <span class="item-value">الثعلب</span></div>
-                    <div class="info-item"><span class="item-label">🎨 اللون المفضل:</span> <span class="item-value" style="color:#4682B4; font-weight: bold;">الأزرق السمائي</span></div>
+                    <div class="info-item"><span class="item-label">🎨 الألوان المفضلة:</span> 
+                        <span class="item-value">
+                            <span style="color:#4682B4; font-weight: bold;">سمائي</span> & <span style="color:#9370DB; font-weight: bold;">أرجواني</span>
+                        </span>
+                    </div>
                 </div>
 
                 <button class="tab-btn" onclick="openTab(event, 'bio')">السيرة الذاتية والأهداف</button>
@@ -183,7 +186,6 @@
     </div>
 
     <script>
-        // دالة تبديل الأقسام
         function openTab(evt, tabName) {
             const contents = document.getElementsByClassName("tab-content");
             const buttons = document.getElementsByClassName("tab-btn");
@@ -201,22 +203,27 @@
             }
         }
 
-        // توقيت العراق
+        // تحديث الوقت بتنسيق 12 ساعة
         function updateIraqTime() {
             const now = new Date();
-            const options = { timeZone: 'Asia/Baghdad', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-            document.getElementById('iraq-time').innerText = now.toLocaleTimeString('en-GB', options);
+            const options = { 
+                timeZone: 'Asia/Baghdad', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true  // هذا يفعّل نظام 12 ساعة
+            };
+            let timeStr = now.toLocaleTimeString('ar-EG', options);
+            document.getElementById('iraq-time').innerText = timeStr;
         }
         setInterval(updateIraqTime, 1000);
         updateIraqTime();
 
-        // عداد الزوار
         let count = localStorage.getItem('zainab_site_visits') || 0;
         count++;
         localStorage.setItem('zainab_site_visits', count);
         document.getElementById('visitor-count').innerText = count;
 
-        // السلايدشو
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {
