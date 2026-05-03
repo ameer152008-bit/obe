@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𔒌 زينــب౨ৎ꒱ ꒱ | أوبي، چبس 🩵💜</title>
     <style>
-        /* إعدادات الخطوط والأساسيات */
+        /* إعدادات الخطوط */
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
-        /* إضافة خط Amiri المزخرف للاسم */
         @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow-x: hidden;
+            min-height: 100vh;
             font-family: 'Tajawal', sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* لضمان ظهور المحتوى من الأعلى في الموبايل */
             color: #333;
+            overflow-x: hidden;
         }
 
-        /* --- نظام الخلفية المتغيرة (Slideshow) --- */
+        /* --- الخلفية المتغيرة --- */
         .background-slideshow {
             position: fixed;
             top: 0;
@@ -39,122 +37,94 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
 
-        /* تأكدي أن الأسماء تطابق الملفات التي رفعتِها */
+        .slide.active { opacity: 1; }
         .slide1 { background-image: url('miffy.jpg'); background-color: #f8f9fa; }
         .slide2 { background-image: url('miku.jpg'); background-color: #e0f7fa; }
         .slide3 { background-image: url('pocoyo.jpg'); background-color: #ede7f6; }
 
-        .slide.active { opacity: 1; }
-
-        /* --- تصميم البطاقة الاحترافي فائق الشفافية (Ultra-Glassmorphism) --- */
+        /* --- حاوية البطاقة (Glassmorphism المحسن) --- */
         .profile-container {
-            width: 90%;
-            max-width: 650px;
-            margin: 40px auto;
+            width: 92%;
+            max-width: 550px;
+            margin: 20px auto;
             position: relative;
             z-index: 10;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.25); /* شفافية عالية جداً */
-            backdrop-filter: blur(20px); /* تأثير ضبابي قوي */
-            -webkit-backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2); /* حافة أنحف وأكثر شفافية */
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 30px 15px;
+            border-radius: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             text-align: center;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.2);
-        }
-
-        /* رأس الصفحة - التوقيت والزوار */
+        /* الإحصائيات العلوية */
         .header-stats {
             display: flex;
-            justify-content: space-between;
-            font-size: 0.85em;
-            color: rgba(51, 51, 51, 0.7); /* نص شفاف قليلاً */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.78em;
             margin-bottom: 25px;
+            color: #4682B4;
             border-bottom: 1px solid rgba(135, 206, 235, 0.2);
             padding-bottom: 10px;
         }
 
-        #iraq-time { color: #4682B4; font-weight: bold; }
-        #visitor-count { color: #9370DB; font-weight: bold; }
-
-        /* --- تصميم الصورة الشخصية (Avatar) - (يستخدم الملف المحلي avatar.jpg) --- */
         .avatar-container {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%; /* شكل دائري */
-            margin: 0 auto 20px; /* توسيط ومسافة لأسفل */
-            overflow: hidden;
-            border: 4px solid #fff; /* إطار أبيض سميك */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            background-color: rgba(255, 255, 255, 0.3); /* خلفية احتياطية شفافة */
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-image: url('avatar.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            
-            /* --- هـنا نقوم بربط الصورة المحلية باسم avatar.jpg --- */
-            background-image: url('avatar.jpg'); 
         }
 
-        /* الاسم المزخرف واللقب */
         h1 {
-            font-family: 'Amiri', serif; /* خط مزخرف قليلاً للاسم */
+            font-family: 'Amiri', serif;
             color: #4682B4;
-            font-size: 2.8em; /* تقليل الحجم قليلاً ليتناسب مع الزخرفة الطويلة */
-            margin: 0;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-            direction: ltr; /* لجعل الزخرفة تظهر بشكل صحيح */
-            display: inline-block;
+            font-size: 2.2rem;
+            margin: 5px 0;
+            direction: ltr;
         }
 
         .nickname {
             color: #9370DB;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
-            margin-bottom: 30px;
-            opacity: 0.8;
-            margin-top: 10px;
+            margin-bottom: 25px;
         }
 
-        /* --- تنظيم محتوى الأقسام (صناديق شفافة) --- */
+        /* --- تصميم الأقسام المدمج (يشبه صورة الآيباد) --- */
         .sections-container {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 15px;
         }
 
         .info-section {
-            background: rgba(240, 248, 255, 0.35); /* شفافية عالية للأقسام */
-            backdrop-filter: blur(5px);
-            padding: 18px;
-            border-radius: 15px;
-            border: 1px solid rgba(135, 206, 235, 0.2);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px 20px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: right;
-        }
-
-        .info-section:hover {
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(1.01);
+            transition: transform 0.3s ease;
         }
 
         .section-title {
-            font-size: 1.25em;
-            font-weight: 700;
+            font-size: 1.1em;
+            font-weight: bold;
             color: #4682B4;
             margin-bottom: 12px;
             border-right: 4px solid #9370DB;
@@ -164,186 +134,100 @@
             gap: 8px;
         }
 
-        /* تصميم القوائم والعناصر داخل الأقسام */
+        /* جعل القائمة توزع المحتوى يميناً ويساراً */
         .info-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
-            color: #444;
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
+            padding: 0; margin: 0;
         }
 
         .info-item {
             display: flex;
+            justify-content: space-between; /* التوزيع يمين ويسار */
             align-items: center;
-            gap: 10px;
-            font-size: 1.02em;
+            margin-bottom: 10px;
+            font-size: 0.95em;
         }
 
-        .item-label { font-weight: bold; color: rgba(102, 102, 102, 0.8); }
-        .item-value { color: #222; font-weight: 500; }
+        .item-label { color: #666; font-weight: bold; }
+        .item-value { color: #222; text-align: left; }
 
-        /* الأقسام الجانبية (الألوان) */
-        .item-value.colors {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        /* تصميم خاص للعمر */
-        #age.age-highlight {
-            font-size: 1.3em;
+        .age-highlight {
             color: #9370DB;
+            font-weight: bold;
             background: rgba(147, 112, 219, 0.1);
-            padding: 1px 7px;
-            border-radius: 5px;
+            padding: 2px 8px;
+            border-radius: 6px;
         }
 
-        /* تذيل الصفحة */
         .footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: rgba(100, 100, 100, 0.6);
-            border-top: 1px solid rgba(135, 206, 235, 0.2);
-            padding-top: 15px;
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: rgba(0,0,0,0.4);
         }
 
         .heart-icon {
-            color: rgba(147, 112, 219, 0.6);
+            color: #9370DB;
             animation: heartBeat 1.5s infinite;
             display: inline-block;
         }
 
         @keyframes heartBeat {
-            0% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
         }
 
-        /* لتجربة الهاتف (Responsive) */
-        @media (max-width: 600px) {
-            .header-stats { flex-direction: column; gap: 3px; align-items: center; font-size: 0.8em; }
-            h1 { font-size: 2em; } /* تقليل حجم الاسم أكثر على الهاتف */
-            .profile-card { padding: 20px; }
-            .avatar-container { width: 100px; height: 100px; }
+        /* تعديلات للشاشات الكبيرة (Desktop) */
+        @media (min-width: 600px) {
+            .header-stats { justify-content: space-between; font-size: 0.85em; }
+            h1 { font-size: 2.8rem; }
+            .avatar-container { width: 130px; height: 130px; }
+            .profile-card { padding: 40px; }
         }
-
     </style>
 </head>
 <body>
 
     <div class="background-slideshow">
-        <div class="slide slide1 active"></div> <div class="slide slide2"></div>        <div class="slide slide3"></div>        </div>
+        <div class="slide slide1 active"></div>
+        <div class="slide slide2"></div>
+        <div class="slide slide3"></div>
+    </div>
 
     <div class="profile-container">
         <div class="profile-card">
             
             <div class="header-stats">
-                <div class="time-stat">📅 <span id="iraq-date">--/--/----</span> | 🕒 تـوقيت العراق: <span id="iraq-time">--:--:--</span></div>
-                <div class="visitor-stat">👁️ عدد زوار الموقع: <span id="visitor-count">1</span></div>
+                <div>📅 <span id="iraq-date">--/--/----</span></div>
+                <div>🕒 توقيت العراق: <span id="iraq-time">--:--:--</span></div>
+                <div>👁️ زوار الموقع: <span id="visitor-count">1</span></div>
             </div>
 
-            <div class="avatar-container">
-            </div>
+            <div class="avatar-container"></div>
 
-            <h1>𔒌 زينــب౨ৎ꒱ ꒱</h1>
-            
+            <h1>𔒌 زينــب౨ৎ</h1>
             <p class="nickname">(أوبي، چبس 💜)</p>
 
             <div class="sections-container">
 
                 <div class="info-section">
                     <div class="section-title">👤 المعلومات الأساسية</div>
-                    <ul class="info-list">
-                        <li class="info-item"><span class="item-label">📅 تاريخ الميلاد:</span> <span class="item-value">2011/8/3</span></li>
-                        <li class="info-item"><span class="item-label">🎂 العمر الحالي:</span> <span class="item-value"><span id="age" class="age-highlight">--</span> سنة</span></li>
-                        <li class="info-item"><span class="item-label">🦊 الحيوان المفضل:</span> <span class="item-value">الثعلب</span></li>
-                        <li class="info-item"><span class="item-label">🎨 الألوان المفضلة:</span> 
-                            <span class="item-value colors">
-                                <span style="color: #4682B4;">السمائي</span> & 
-                                <span style="color: #9370DB;">الأرجواني</span>
-                            </span>
-                        </li>
-                    </ul>
+                    <div class="info-list">
+                        <div class="info-item"><span class="item-label">📅 تاريخ الميلاد:</span> <span class="item-value">2011/8/3</span></div>
+                        <div class="info-item"><span class="item-label">🎂 العمر الحالي:</span> <span class="item-value"><span id="age" class="age-highlight">--</span> سنة</span></div>
+                        <div class="info-item"><span class="item-label">🦊 الحيوان المفضل:</span> <span class="item-value">الثعلب</span></div>
+                        <div class="info-item"><span class="item-label">🎨 الألوان:</span> <span class="item-value" style="color:#4682B4">السمائي <span style="color:#333">&</span> <span style="color:#9370DB">الأرجواني</span></span></div>
+                    </div>
                 </div>
 
                 <div class="info-section">
-                    <div class="section-title">📚 السيرة الذاتية & الأهداف</div>
-                    <ul class="info-list">
-                        <li class="info-item"><span class="item-label">🎓 الدراسة:</span> <span class="item-value">ثالث متوسط</span></li>
-                        <li class="info-item"><span class="item-label">🌟 الهدف المستقبلي:</span> <span class="item-value">مهندسة 🏗️</span></li>
-                    </ul>
+                    <div class="section-title">📚 الأهداف</div>
+                    <div class="info-list">
+                        <div class="info-item"><span class="item-label">🎓 الدراسة:</span> <span class="item-value">ثالث متوسط</span></div>
+                        <div class="info-item"><span class="item-label">🌟 الهدف:</span> <span class="item-value">مهندسة 🏗️</span></div>
+                    </div>
                 </div>
 
                 <div class="info-section">
-                    <div class="section-title">🎮 الهوايات & الألعاب</div>
-                    <ul class="info-list">
-                        <li class="info-item"><span class="item-label">🕹️ الهوايات:</span> <span class="item-value">الإيديت (Edit)، الرسم 🎨 <span style="color: #777; font-size: 0.9em;">(معتزلة)</span></span></li>
-                        <li class="info-item"><span class="item-label"> 🪐الألعاب المفضلة:</span> <span class="item-value">(Genshin Impact)</span></li>
-                    </ul>
-                </div>
-
-                <div class="info-section">
-                    <div class="section-title">🌐 اللغات</div>
-                    <ul class="info-list">
-                        <li class="info-item"><span class="item-label">🇮🇶 اللغة العربية:</span> <span class="item-value">متكلمة 🏅</span></li>
-                        <li class="info-item"><span class="item-label">🇺🇸 اللغة الإنجليزية:</span> <span class="item-value">متكلمة 🥈</span></li>
-                        <li class="info-item"><span class="item-label">🇫🇷 اللغة الفرنسية:</span> <span class="item-value">جارٍ التعلم 🏁</span></li>
-                    </ul>
-                </div>
-
-            </div> <div class="footer">
-                صنع بكل حب <span class="heart-icon">💜</span> في عالم جبسايتي
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- 1. كود حساب العمر تلقائياً ---
-        function calculateAge(birthDate) {
-            const today = new Date();
-            const birth = new Date(birthDate);
-            let age = today.getFullYear() - birth.getFullYear();
-            const monthDiff = today.getMonth() - birth.getMonth();
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) { age--; }
-            return age;
-        }
-        document.getElementById('age').innerText = calculateAge('2011-03-08');
-
-        // --- 2. كود السلايدشو للخلفية ---
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000); // 5 ثوانٍ
-
-        // --- 3. كود توقيت وتاريخ العراق المباشر ---
-        function updateIraqTime() {
-            const now = new Date();
-            const options = { timeZone: 'Asia/Baghdad', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-            const iraqString = now.toLocaleString('en-US', options);
-            const [datePart, timePart] = iraqString.split(', ');
-            document.getElementById('iraq-date').innerText = datePart;
-            document.getElementById('iraq-time').innerText = timePart;
-        }
-        setInterval(updateIraqTime, 1000);
-        updateIraqTime();
-
-        // --- 4. كود عداد الزوار ---
-        function updateVisitorCount() {
-            let count = localStorage.getItem('zainab_site_visits');
-            if (!count) { count = 1; } 
-            else { count = parseInt(count) + 1; }
-            localStorage.setItem('zainab_site_visits', count);
-            document.getElementById('visitor-count').innerText = count;
-        }
-        updateVisitorCount();
-
-    </script>
-
-</body>
-</html>
+                    <div class="section-title">🎮 الهوايات</div>
+                    <div class="info-list">
+                        <div class="info-item"><span class="item
